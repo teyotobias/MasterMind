@@ -118,7 +118,7 @@ h1 {
     /* Add other styles as needed */
 }
 
-.colors {
+#colors {
     width: 100%;
     margin-left: 10px;
     padding: 5px;
@@ -128,7 +128,7 @@ h1 {
     grid-template-rows: repeat(2, 1fr);
 }
 
-.colors > div {
+#colors > div {
     grid-row: span 1;
     grid-column: span 1;
     
@@ -163,7 +163,7 @@ h1 {
 #color6 {
     background-color: orange;
 }
-#selection, #deselect {
+#select, #deselect {
     margin-top: 4vmin;
     width: 100px;
     background-color: lightgrey;
