@@ -103,6 +103,15 @@ function generateRandomColorCode() {
     return randomColors;
 
 }
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]]; // swap elements
+    }
+    return array;
+}
+
 //calls determineOutcome after a turn has been finished
 //and prepares board / game logic for next turn
 function handleSelect() {
@@ -110,6 +119,7 @@ function handleSelect() {
     winner = getWinner() ? 1 : null;
     //slice instead of = because if playerResults gets cleared after
     // then so does results. slice creates a copy
+    playerResults = shuffleArray(playerResults);
     results[turn] = playerResults.slice();
     let count = playerResults.filter(val => val === 'red').length;
     if(count == 0) {
