@@ -10,7 +10,27 @@
 </head>
 <body>
     <header>MasterMind</header>
-    <h1>Welcome To MasterMind</h1>
+    <div class="header-container">
+        <div class="dropdown">
+            <p class="instructions">How To Play</p>
+            <div class="dropdown-content">
+                <p>The objective of MASTERMIND is to guess a secret code consisting of a series of 4
+colored pegs. Each guess results in feedback narrowing down the possibilities of the
+code. In this case, the "codemaker" is the computer. The "codebreaker" is YOU! Guess a sequence
+of four colors by clicking on the color boxes. Reset your guess for your current turn by pressing
+"deselect all." Submit your guess for checking by pressing "Make Selection." The four "pegs" to the
+right of each row make up your feedback. A white peg means one of your guesses was not in the secret color
+code at all. A black peg means one of your guesses is in the color code, but is not at the correct index.
+A red peg means one of your guesses is in the color code at the correct index. The feedback pegs are displayed
+in no specific order, this is the difficulty of the game. The goal is to end up with four red pegs, meaning
+you have guessed the code correctly! Upon winning or running out of guesses, the secret color code will be 
+revealed. You have 10 guesses. Goodluck!</p>
+            </div>
+        </div>
+        <h1>Welcome to Mastermind</h1>
+    </div>
+    <!-- <button id="instructions-button">Instructions</button>
+    <h1 id="welcome-message">Welcome To MasterMind</h1> -->
     <section class="game-container">
         <section id="board">
             <div class="row" id="row-0">
