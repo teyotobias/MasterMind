@@ -90,7 +90,6 @@ h1 {
     padding-left: 10px;
 }
 .col-row {
-    /* Style as needed... */
     height: 6vmin; 
     border: .1vmin solid grey;
     display: grid;
@@ -187,4 +186,118 @@ h1 {
     display: flex;
     justify-content: space-between;
     width: 100%;
+}
+
+@media screen and (max-width: 500px) {
+    #board {
+        width: 30vmin;
+    }
+    #results {
+        width: 7.5vmin;
+    }
+
+}
+@media screen and (max-width: 400px) {
+    #board {
+        width: 25vmin;
+    }
+    #results {
+        width: 6.25vmin;
+    }
+    .peg {
+        height: 1vmin;
+        width: 1vmin;
+    }
+    .buttons-container {
+        position: relative;
+        right: 10px;
+    }
+}
+@media screen and (max-width: 345px) {
+    #board {
+        width: 20vmin;
+        position: relative;
+        right: 5px;
+    }
+    #results {
+        width: 5vmin;
+        position: relative;
+        right: 5px;
+    }
+    .peg {
+        height: 1vmin;
+        width: 1vmin;
+    }
+    .buttons-container {
+        position: relative;
+        right: 15px;
+    }
+    .col-row {
+        /* Style as needed... */
+        height: 6vmin; 
+        border: .1vmin solid grey;
+        display: grid;
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+        gap: .5vmin;
+        width: 6vmin;
+    }
+
+}
+@media screen and (max-width: 300px) {
+    #select, #deselect {
+        width: 50px;
+        height: 45px;
+        font-size: 50%;
+    }
+
+}
+@media screen and (max-height: 550px) {
+    #colors {
+        height: 40%;
+    }
+
+}
+
+@media screen and (max-height: 490px) {
+    #colors {
+        height: 70%;
+        position: relative;
+        top: 20px;
+    }
+    .peg-choices {
+        position: relative;
+        top: 20px;
+    }
+    .buttons-container {
+        position: relative;
+        top: 20px;
+    }
+}
+@media screen and (max-height: 450px) {
+    #colors {
+        height: 500px;
+        top: 20px;
+    }
+    .buttons-container {
+        position: relative;
+        top: 40px;
+    }
+    .peg-choices {
+        position: relative;
+        top: 40px;
+    }
+    #select, #deselect {
+        width: 50px;
+        height: 30px;
+        font-size: 50%;
+    }
+
+}
+@media screen and (max-height: 425px) {
+    #colors {
+        height: 100vmin;
+        top: 20px;
+        right: 20px;
+    }
 }

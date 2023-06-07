@@ -34,6 +34,7 @@ const playAgainBtn = document.getElementById('play-again');
 
 /*----- event listeners -----*/
 document.getElementById('colors').addEventListener('click', handleChoice);
+//      ^Event Delegation
 document.getElementById('play-again').addEventListener('click', playAgain);
 document.getElementById('deselect').addEventListener('click', deselectAll);
 document.getElementById('select').addEventListener('click', handleSelect);
