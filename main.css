@@ -69,6 +69,11 @@ body {
     flex-direction: column;
     justify-content: space-between;
     width: 40vmin;
+    /* In CSS, vmin stands for viewport minimum. The vmin function 
+    is used to set the size of an element as a percentage of the 
+    minimum value between the viewport width or height. For example,
+     if the viewport is 1000px wide and 800px high, if we set the 
+     width of an element to 30vmin , it will be 30% of the height. */
     /* border: 1px solid red; */
 }
 .row {
@@ -235,17 +240,13 @@ h1 {
     border: 1px solid black;
 
 }
-@media screen and (max-width: 800px) {
-    .dropdown {
-        margin-right: 25%;
-    }
+#select:hover, #deselect:hover {
+    transform: scale(1.3);
+    transition: transform 100ms ease-in;
+    border: 1px solid black;
+    background-color: red;
 }
 
-@media screen and (max-width: 680px) {
-    .dropdown {
-        margin-right: 22%;
-    }
-}
 
 
 @media screen and (max-width: 500px) {
