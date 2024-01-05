@@ -7,7 +7,9 @@ const COLORS = {
     '3' : 'blue',
     '4' : 'purple',
     '5' : 'pink',
-    '6' : 'orange'
+    '6' : 'orange',
+    '7': 'green',
+    '8': 'brown',
 }
 const RESULTS = {
      0 : 'white',
@@ -25,6 +27,8 @@ let results; //array of 10 rows corresponding to color choices player makes
 let playerChoices;
 let colorCode;
 let playerResults;
+let currentSelection = []
+
 
 /*----- cached elements  -----*/
 const messageEl = document.getElementById('result-message');
@@ -92,10 +96,57 @@ function init() {
     render();
 }
 
+function selectColor(colorKey) {
+    if (currentSelection.length < 6 && !currentSelection.includes(colorKey)) {
+        currentSelection.push(colorKey);
+        updateSelectedColorsDisplay();
+    }
+}
+function updateSelectedColorsDisplay() {
+    const selectedColorsEl = document.getElementById('selected-colors');
+    // clears current display:
+    selectedColorsEl.innerHTML = '';
+    // add new
+    currentSelection.forEach(key => {
+        const colorDiv = document.createElement('div');
+        colorDiv.style.backgroundColor = COLORS[key];
+        selectedColorsEl.appendChild(colorDiv);
+    })
+}
+function resetColorSelection() {
+    currentSelection = [];
+    updateSelectedColorsDisplay();
+}
+
+function finishColorSelection() {
+    if (currentSelection.length === 6) {
+        // close modal and use these colors for the game
+        document.getElementById('color-selection-modal').style.display = 'none';
+        // now update game logic to use these colors
+    }
+}
+function populateColorChoices() {
+    const allColorsEl = document.getElementById('all-colors');
+    Object.keys(COLORS).forEach(key => {
+        if(key!= '0') {
+            const colorDiv = document.createElement('div')
+            colorDiv.style.backgroundColor = COLORS[key];
+            colorDiv.onclick = () => selectColor(key);
+            allColorsEl.appendChild(colorDiv)
+        }
+    })
+}
+
+
+
+
+
+
+
 //generate random color code for each game
 function generateRandomColorCode() {
-    let colorKeys = ['1','2','3','4','5','6'];
     let randomColors = [];
+    let colorKeys = currentSelection.slice()
     for(let i = 0; i < 4; i++) {
         let randIndex = Math.floor(Math.random() * colorKeys.length);
         randomColors.push(colorKeys[randIndex]);
