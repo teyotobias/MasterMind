@@ -9,7 +9,6 @@
     <script defer src="main.js"></script>
 </head>
 <body>
-    <header>MasterMind</header>
     <div class="header-container">
         <div class="dropdown">
             <p class="instructions">How To Play</p>
@@ -27,9 +26,12 @@ you have guessed the code correctly! Upon winning or running out of guesses, the
 revealed. You have 10 guesses. Goodluck!</p>
             </div>
         </div>
+        <!-- button in charge of color selection-->
+        <button id="color-selection-button">Color Selection</button>
     </div>
-    <!-- <button id="instructions-button">Instructions</button>
-    <h1 id="welcome-message">Welcome To MasterMind</h1> -->
+    <header id="MM">MasterMind</header>
+
+    <!-- Actual board container -->
     <section class="game-container">
         <section id="board">
             <div class="row" id="row-0">
@@ -99,6 +101,7 @@ revealed. You have 10 guesses. Goodluck!</p>
                 <div id="c3rA"></div>
             </div>
         </section>
+        <!-- result section - tiny bubbles, make need to take style from here-->
         <section id="results">
             <div class="col-row" id="row0">
                 <div class="peg" id="pegc0r0"></div>
@@ -160,13 +163,8 @@ revealed. You have 10 guesses. Goodluck!</p>
                 <div class="peg" id="pegc2r9"></div>
                 <div class="peg" id="pegc3r9"></div>
             </div>
-            <!-- <div class="col-row" id="rowA">
-                <div class="peg" id="pegc0rA"></div>
-                <div class="peg" id="pegc1rA"></div>
-                <div class="peg" id="pegc2rA"></div>
-                <div class="peg" id="pegc3rA"></div>
-            </div> -->
         </section>
+        <!-- Section to pick choice for each turn-->
         <section id="right-section">
             <div id="colors">
                 <div id="color1"></div>
@@ -186,11 +184,34 @@ revealed. You have 10 guesses. Goodluck!</p>
                 <button id="deselect">Deselect All</button>
                 <button id="select">Make Selection</button>
             </div>
+            <!-- Play again and then results message as well.-->
             <button id="play-again">Play Again</button>
             <h3 id="result-message"></h3>
 
         </section>
     </section>
+    <!-- All of below for choosing gameplay colors-->
+
+    <!-- Functions: selectColor, finishColorSelection, resetColorSelection -->
+
+
+    <div id="color-selection-modal" class="modal">
+        <div id="all-colors">
+            <div style="background-color:red" onclick="selectColor('1')"></div>
+            <div style="background-color:yellow" onclick="selectColor('2')"></div>
+            <div style="background-color:blue" onclick="selectColor('3')"></div>
+            <div style="background-color:purple" onclick="selectColor('4')"></div>
+            <div style="background-color:pink" onclick="selectColor('5')"></div>
+            <div style="background-color:orange" onclick="selectColor('6')"></div>
+            <div style="background-color:green" onclick="selectColor('7')"></div>
+            <div style="background-color:brown" onclick="selectColor('8')"></div>
+        </div>
+        <div id="selected-colors">
+
+        </div>
+        <button onclick="finishColorSelection()">Finish</button>
+        <button onclick="resetColorSelection()">Reset</button>
+    </div>
     
 </body>
 </html>

@@ -1,5 +1,6 @@
 /*----- constants -----*/
 
+/* number: color for COLOR MAPPER */
 const COLORS = {
     '0' : 'white',
     '1' : 'red',
@@ -7,15 +8,15 @@ const COLORS = {
     '3' : 'blue',
     '4' : 'purple',
     '5' : 'pink',
-    '6' : 'orange'
+    '6' : 'orange',
+    '7': 'green',
+    '8': 'brown',
 }
 const RESULTS = {
      0 : 'white',
      1 : 'black',
      2 : 'red'
 }
-
-
 
 /*----- state variables -----*/
 let turn; //can be one of 0-9
@@ -25,6 +26,8 @@ let results; //array of 10 rows corresponding to color choices player makes
 let playerChoices;
 let colorCode;
 let playerResults;
+let currentSelection = []
+
 
 /*----- cached elements  -----*/
 const messageEl = document.getElementById('result-message');
@@ -38,6 +41,15 @@ document.getElementById('colors').addEventListener('click', handleChoice);
 document.getElementById('play-again').addEventListener('click', playAgain);
 document.getElementById('deselect').addEventListener('click', deselectAll);
 document.getElementById('select').addEventListener('click', handleSelect);
+document.getElementById('color-selection-button').addEventListener('click', function() {
+    if (turn == 0 && playerChoices.every(choice => choice === 0)) {
+        document.getElementById('color-selection-modal').style.display = 'block';
+        populateColorChoices();
+        updateSelectedColorsDisplay();
+    } else {
+        alert('Cannot modify in game!');
+    }
+});
 
 
 /*----- functions -----*/
@@ -68,20 +80,15 @@ function init() {
         ['white', 'white', 'white', 'white'],
         ['white', 'white', 'white', 'white'],
     ];
-    // results = [
-    //     [0,0,0,0],
-    //     [0,0,0,0],
-    //     [0,0,0,0],
-    //     [0,0,0,0],
-    //     [0,0,0,0],
-    //     [0,0,0,0],
-    //     [0,0,0,0],
-    //     [0,0,0,0],
-    //     [0,0,0,0],
-    //     [0,0,0,0],
-    // ];
-    //colorCode = ['1','2','3','4']; //randomly generate, HCed just for testing
-    colorCode = generateRandomColorCode();
+
+    if (currentSelection.length === 6) {
+        colorCode = generateRandomColorCode();
+    } else {
+        currentSelection = ['1', '2', '3', '4', '5', '6'];
+        colorCode = generateRandomColorCode();
+    }
+
+
     playerChoices = [0,0,0,0];
     playerResults = [0,0,0,0];
     turn = 0;
@@ -92,10 +99,75 @@ function init() {
     render();
 }
 
+function renderPlayerColorChoices() {
+    const colorsEl = document.getElementById('colors');
+    colorsEl.innerHTML = '';
+    currentSelection.forEach(key => {
+        const colorDiv = document.createElement('div');
+        colorDiv.id = `color${key}`;
+        colorDiv.style.backgroundColor = COLORS[key];
+        colorsEl.appendChild(colorDiv);
+    });
+}
+
+function selectColor(colorKey) {
+    if (currentSelection.length < 6 && !currentSelection.includes(colorKey)) {
+        currentSelection.push(colorKey);
+        updateSelectedColorsDisplay();
+    }
+}
+function updateSelectedColorsDisplay() {
+    const selectedColorsEl = document.getElementById('selected-colors');
+    // clears current display:
+    selectedColorsEl.innerHTML = '';
+    for (let i = 0; i < 6; i++ ) {
+        const colorDiv = document.createElement('div');
+        colorDiv.className = 'color-choice-bubble';
+        if ( i < currentSelection.length) {
+            colorDiv.style.backgroundColor = COLORS[currentSelection[i]];
+        } else {
+            colorDiv.style.backgroundColor = 'lightgrey';
+        }
+        selectedColorsEl.appendChild(colorDiv);
+    }
+    // add new
+}
+function resetColorSelection() {
+    currentSelection = [];
+    updateSelectedColorsDisplay();
+}
+
+function finishColorSelection() {
+    if (currentSelection.length === 6) {
+        // close modal and use these colors for the game
+        document.getElementById('color-selection-modal').style.display = 'none';
+        renderPlayerColorChoices();
+        // now update game logic to use these colors
+    }
+}
+function populateColorChoices() {
+    const allColorsEl = document.getElementById('all-colors');
+    allColorsEl.innerHTML = '';
+    Object.keys(COLORS).forEach(key => {
+        if(key!= '0') {
+            const colorDiv = document.createElement('div')
+            colorDiv.style.backgroundColor = COLORS[key];
+            colorDiv.onclick = () => selectColor(key);
+            allColorsEl.appendChild(colorDiv)
+        }
+    })
+}
+
+
+
+
+
+
+
 //generate random color code for each game
 function generateRandomColorCode() {
-    let colorKeys = ['1','2','3','4','5','6'];
     let randomColors = [];
+    let colorKeys = currentSelection.slice()
     for(let i = 0; i < 4; i++) {
         let randIndex = Math.floor(Math.random() * colorKeys.length);
         randomColors.push(colorKeys[randIndex]);
@@ -122,19 +194,19 @@ function handleSelect() {
     // then so does results. slice creates a copy
     playerResults = shuffleArray(playerResults);
     results[turn] = playerResults.slice();
-    let count = playerResults.filter(val => val === 'red').length;
-    if(count == 0) {
-        messageEl.innerText = "You're Cold..."
-    }
-    else if(count == 1) {
-        messageEl.innerText = "Room Temp...";
-    }
-    else if(count == 2) {
-        messageEl.innerText = "Very Warm..."
-    }
-    else if(count == 3) {
-        messageEl.innerText = "You're Touching the Sun..."
-    }
+    // let count = playerResults.filter(val => val === 'red').length;
+    // if(count == 0) {
+    //     messageEl.innerText = "You're Cold..."
+    // }
+    // else if(count == 1) {
+    //     messageEl.innerText = "Room Temp...";
+    // }
+    // else if(count == 2) {
+    //     messageEl.innerText = "Very Warm..."
+    // }
+    // else if(count == 3) {
+    //     messageEl.innerText = "You're Touching the Sun..."
+    // }
     playerChoices.fill(0);
     playerResults.fill(0);
     turn++;
@@ -144,6 +216,7 @@ function handleSelect() {
 //render function -> board, message, controls
 function render() {
     renderBoard();
+    renderPlayerColorChoices();
     renderMessage();
     renderControls();
 }
@@ -169,6 +242,7 @@ function renderBoard() {
 
         });
     });
+    // ensure color choices are maintained
     //iterating over result pegs and assigning each peg its color
     results.forEach(function(rowArr, rowIdx) {
         rowArr.forEach(function(cellVal, colIdx) {
@@ -257,27 +331,6 @@ function handleChoice(evt) {
             }
         }  
     }
-    // const elID = evt.target.id;
-    // const colorID = elID[5];
-    // for(let i = 0; i < playerChoices.length; i++) {
-    //     if(playerChoices[i] == 0){
-    //         playerChoices[i] = colorID;
-    //         board[turn][i] = colorID;
-    //         break;
-    //     }
-    // }
-    // if(playerChoices[3] !== 0) {
-    //     determineOutcome();
-    //     winner = getWinner() ? 1 : null;
-    //     //renderResults();
-    //     //playerChoices.fill(0);
-    //     //playerResults.fill(0);
-    //     //turn++;
-    //     results[turn] = playerResults.slice();
-    //     playerChoices.fill(0);
-    //     playerResults.fill(0);
-    //     turn++;
-    // }
-    //winner = getWinner();
+
     render();
 }
