@@ -81,12 +81,12 @@ function init() {
         ['white', 'white', 'white', 'white'],
     ];
 
-    if (currentSelection.length === 6) {
-        colorCode = generateRandomColorCode();
-    } else {
-        currentSelection = ['1', '2', '3', '4', '5', '6'];
-        colorCode = generateRandomColorCode();
+    if (currentSelection.length === 0) {
+        currentSelection = ['1','2','3','4','5','6'];
     }
+    colorCode = generateRandomColorCode();
+
+    console.log('Color Code:', colorCode);
 
 
     playerChoices = [0,0,0,0];
@@ -142,6 +142,8 @@ function finishColorSelection() {
         // close modal and use these colors for the game
         document.getElementById('color-selection-modal').style.display = 'none';
         renderPlayerColorChoices();
+        colorCode = generateRandomColorCode();
+        console.log('New Color Code:', colorCode);
         // now update game logic to use these colors
     }
 }
@@ -171,7 +173,10 @@ function generateRandomColorCode() {
     for(let i = 0; i < 4; i++) {
         let randIndex = Math.floor(Math.random() * colorKeys.length);
         randomColors.push(colorKeys[randIndex]);
-        colorKeys.splice(randIndex, 1); // Remove the selected key to avoid repetition
+        /*
+        Taken out - repetition is okay here.
+         colorKeys.splice(randIndex, 1); // Remove the selected key to avoid repetition
+         */
     }
     return randomColors;
 
