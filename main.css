@@ -9,6 +9,8 @@
     margin: 5px;
     border: 1px solid #ddd;
 }
+
+
 /*
 items added start here
 */
@@ -292,6 +294,7 @@ h1 {
     margin-top: 4vmin;
     width: 100px;
     background-color: lightgrey;
+    border: 1px solid gray;
 }
 #play-again {
     visibility: hidden;
