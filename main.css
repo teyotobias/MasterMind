@@ -1,7 +1,9 @@
 * {
     box-sizing: border-box;
 }
-
+/*
+CSS for bubbles that represent a color selected for in-game use
+*/
 .color-choice-bubble {
     width: 30px;
     height: 30px;
@@ -12,7 +14,7 @@
 
 
 /*
-items added start here
+    CSS for color selection container (modal)
 */
 .modal {
     display: none; /* hidden by default */
@@ -27,7 +29,9 @@ items added start here
     padding: 20px;
     z-index: 1000; /* makes sure it sits on top */
 }
-
+/*
+CSS for possible colors and selected colors (blocks and bubbles in color selection)
+*/
 #all-colors, #selected-colors {
     display: flex;
     justify-content: center;
