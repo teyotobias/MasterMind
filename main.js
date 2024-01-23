@@ -109,13 +109,14 @@ function renderPlayerColorChoices() {
         colorsEl.appendChild(colorDiv);
     });
 }
-
+// function for selecting a color to be playable
 function selectColor(colorKey) {
     if (currentSelection.length < 6 && !currentSelection.includes(colorKey)) {
         currentSelection.push(colorKey);
         updateSelectedColorsDisplay();
     }
 }
+// function to update color selection
 function updateSelectedColorsDisplay() {
     const selectedColorsEl = document.getElementById('selected-colors');
     // clears current display:
@@ -132,11 +133,17 @@ function updateSelectedColorsDisplay() {
     }
     // add new
 }
+// function that ties to reset button in color selection modal
 function resetColorSelection() {
     currentSelection = [];
     updateSelectedColorsDisplay();
 }
 
+/*
+    Function that is tied to 'finish' button in color selection modal
+    Configures selected colors to be colors used in game
+
+*/
 function finishColorSelection() {
     if (currentSelection.length === 6) {
         // close modal and use these colors for the game
@@ -147,6 +154,7 @@ function finishColorSelection() {
         // now update game logic to use these colors
     }
 }
+// populates color choices available in color selection (all 8)
 function populateColorChoices() {
     const allColorsEl = document.getElementById('all-colors');
     allColorsEl.innerHTML = '';
