@@ -1,6 +1,15 @@
 * {
     box-sizing: border-box;
 }
+
+.colorButtons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#cancelButton {
+    margin-right: auto;
+}
 /*
 CSS for bubbles that represent a color selected for in-game use
 */
@@ -120,7 +129,7 @@ body {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255,255,255,0.9);
     min-width: 160px;
     max-width: 325px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -244,11 +253,12 @@ h1 {
 #colors {
     width: 100%;
     margin-left: 10px;
-    padding: 5px;
+    /* padding: 5px; */
     height: 30%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
+    border: 1px solid gray;
 }
 
 #colors > div {
@@ -256,6 +266,7 @@ h1 {
     grid-column: span 1;
     min-width: 30px;
     min-height: 30px;
+    border: 1px solid grey;
     
 }
 
