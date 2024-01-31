@@ -26,7 +26,8 @@ let results; //array of 10 rows corresponding to color choices player makes
 let playerChoices;
 let colorCode;
 let playerResults;
-let currentSelection = []
+let currentSelection = [];
+let initialSelection = [];
 
 
 /*----- cached elements  -----*/
@@ -41,8 +42,10 @@ document.getElementById('colors').addEventListener('click', handleChoice);
 document.getElementById('play-again').addEventListener('click', playAgain);
 document.getElementById('deselect').addEventListener('click', deselectAll);
 document.getElementById('select').addEventListener('click', handleSelect);
+document.getElementById('cancelButton').addEventListener('click', cancelColorSelection)
 document.getElementById('color-selection-button').addEventListener('click', function() {
     if (turn == 0 && playerChoices.every(choice => choice === 0)) {
+        initialSelection = [...currentSelection];
         document.getElementById('color-selection-modal').style.display = 'block';
         populateColorChoices();
         updateSelectedColorsDisplay();
@@ -153,6 +156,12 @@ function finishColorSelection() {
         console.log('New Color Code:', colorCode);
         // now update game logic to use these colors
     }
+}
+function cancelColorSelection() {
+    currentSelection = [...initialSelection];
+    document.getElementById('color-selection-modal').style.display = 'none';
+    renderPlayerColorChoices();
+    // no perceived need to update currentSelection or colorCode, game will continue w/defaults
 }
 // populates color choices available in color selection (all 8)
 function populateColorChoices() {

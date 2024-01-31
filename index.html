@@ -211,8 +211,11 @@ revealed. You have 10 guesses. Goodluck!</p>
         <div id="selected-colors">
 
         </div>
-        <button onclick="finishColorSelection()">Finish</button>
-        <button onclick="resetColorSelection()">Reset</buttononclick=>
+        <div class="colorButtons">
+            <button onclick="cancelColorSelection()" id="cancelButton">Cancel</button>
+            <button onclick="resetColorSelection()">Reset</button>
+            <button onclick="finishColorSelection()">Finish</button>
+        </div>
     </div>
     
 </body>

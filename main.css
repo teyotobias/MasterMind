@@ -1,6 +1,15 @@
 * {
     box-sizing: border-box;
 }
+
+.colorButtons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#cancelButton {
+    margin-right: auto;
+}
 /*
 CSS for bubbles that represent a color selected for in-game use
 */
@@ -120,7 +129,7 @@ body {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255,255,255,0.9);
     min-width: 160px;
     max-width: 325px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -158,14 +167,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: auto;
     height: 12vmin;
     margin-top: 3px;
     
 }
 
 header {
-    font-size: 4vmin;
+    font-size: 7vmin;
     color: darkgrey;
     letter-spacing: 1vmin;
     margin-top: 5vmin;
@@ -244,11 +253,12 @@ h1 {
 #colors {
     width: 100%;
     margin-left: 10px;
-    padding: 5px;
+    /* padding: 5px; */
     height: 30%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
+    border: 1px solid gray;
 }
 
 #colors > div {
@@ -256,6 +266,7 @@ h1 {
     grid-column: span 1;
     min-width: 30px;
     min-height: 30px;
+    border: 1px solid grey;
     
 }
 
@@ -299,6 +310,7 @@ h1 {
     width: 100px;
     background-color: lightgrey;
     border: 1px solid gray;
+    font-size: 16px;
 }
 #play-again {
     visibility: hidden;
@@ -336,15 +348,7 @@ h1 {
 
 
 
-@media screen and (max-width: 500px) {
-    #board {
-        width: 30vmin;
-    }
-    #results {
-        width: 7.5vmin;
-    }
 
-}
 @media screen and (max-width: 400px) {
     #board {
         width: 25vmin;
@@ -391,6 +395,27 @@ h1 {
         width: 6vmin;
     }
 
+}
+@media screen and (max-width: 800px) {
+    #select, #deselect {
+        font-size: 10px;
+    }
+    #right-section {
+        margin-left: 10vmin;
+    }
+}
+@media screen and (max-width: 550px) {
+    #select, #deselect {
+        font-size: 8px;
+    }
+    #right-section {
+        margin-left: 7vmin;
+    }
+}
+@media screen and (max-width: 450px) {
+    #select, #deselect {
+        font-size: 6px;
+    }
 }
 @media screen and (max-width: 300px) {
     #select, #deselect {
