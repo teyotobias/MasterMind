@@ -19,10 +19,10 @@ const RESULTS = {
 }
 
 /*----- state variables -----*/
-let turn; //can be one of 0-9
-let board; //array of 10 rows 
+let turn; //can be one of 0-7
+let board; //array of 7 rows 
 let winner; //null = no winner; 1 = winner
-let results; //array of 10 rows corresponding to color choices player makes
+let results; //array of 7 rows corresponding to color choices player makes
 let playerChoices;
 let colorCode;
 let playerResults;
@@ -67,9 +67,9 @@ function init() {
         [0,0,0,0],
         [0,0,0,0],
         [0,0,0,0],
-        [0,0,0,0],
-        [0,0,0,0],
-        [0,0,0,0],
+        // [0,0,0,0],
+        // [0,0,0,0],
+        // [0,0,0,0],
     ];
     results = [
         ['white', 'white', 'white', 'white'],
@@ -79,9 +79,9 @@ function init() {
         ['white', 'white', 'white', 'white'],
         ['white', 'white', 'white', 'white'],
         ['white', 'white', 'white', 'white'],
-        ['white', 'white', 'white', 'white'],
-        ['white', 'white', 'white', 'white'],
-        ['white', 'white', 'white', 'white'],
+        // ['white', 'white', 'white', 'white'],
+        // ['white', 'white', 'white', 'white'],
+        // ['white', 'white', 'white', 'white'],
     ];
 
     if (currentSelection.length === 0) {
@@ -288,17 +288,14 @@ function renderBoard() {
 }
 //sends message to player based on win/loss
 function renderMessage() {
-    if(turn === 10 || winner){
+    if(turn === 7 || winner){
         messageEl.innerText = winner === null ? "You lose! Play again?":"You win! Play again?";
-        // colorCodeEl.style.visibility = 'visible';
-        //messageEl.style.visibility = 'visible';
-        // playAgainBtn.style.visibility = 'visible';
     }
     messageEl.style.visibility = 'visible';
 }
 //controls visibility of game outcome elements
 function renderControls() {
-    if(turn === 10 || winner) {
+    if(turn === 7 || winner) {
         colorCodeEl.style.visibility = 'visible';
         messageEl.style.visibility = 'visible';
         playAgainBtn.style.visibility = 'visible';
