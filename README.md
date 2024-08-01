@@ -5,7 +5,7 @@ color code made by the computer (codemaker) supported by hints following each tu
 ## Hosted App
 Access the hosted app by visiting the following link: (https://teyotobias.github.io/MasterMind/)
 
-<img width="1496" alt="Screenshot 2023-08-04 at 18 26 29" src="https://github.com/teyotobias/MasterMind/assets/112126540/0bed6de7-a2d7-4ccd-85d5-2bd2607dddcb">
+<img width="1168" alt="Screenshot 2024-08-01 at 15 41 00" src="https://github.com/user-attachments/assets/d30cc80d-d4a7-4c32-b2e5-645a040633f4">
 
 
 ## Technologies used:
